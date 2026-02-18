@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-primary: #0D0D0F;
+  --background-secondary: #16161A;
+  --background-tertiary: #1E1E24;
+  --surface: #26262E;
+  --border: #3A3A44;
+  --primary: #6366F1;
+  --secondary: #22D3EE;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --text-primary: #F4F4F5;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow: hidden;
+  font-family: 'Geist Sans', 'SF Pro Display', system-ui, sans-serif;
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Panel transitions */
+.panel-transition {
+  transition: transform 150ms ease-out, opacity 150ms ease-out;
+}
+
+/* Button hover effects */
+.btn-hover {
+  @apply transition-all duration-150 ease-out;
+}
+
+.btn-hover:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+
+.btn-hover:active {
+  transform: scale(0.98);
+}
+
+/* Loading pulse animation */
+@keyframes pulse-processing {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.processing-pulse {
+  animation: pulse-processing 1.5s ease-in-out infinite;
+}
+
+/* Skeleton loader */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--background-tertiary) 25%,
+    var(--surface) 50%,
+    var(--background-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Drop zone active state */
+.drop-zone-active {
+  @apply border-primary bg-primary/10;
+}
+
+/* Selection handles */
+.selection-handle {
+  fill: white;
+  stroke: var(--primary);
+  stroke-width: 2;
+}
+
+/* Canvas grid */
+.canvas-grid {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
