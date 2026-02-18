@@ -12,9 +12,7 @@ from dotenv import load_dotenv
 
 # Load .env from backend directory
 load_dotenv(Path(__file__).resolve().parent / ".env")
-from typing import Optional
 
-import fal_client
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -61,6 +59,8 @@ async def health():
 
 def _decompose_via_fal(content: bytes, media_type: str, num_layers: int):
     """Use fal.ai API (requires FAL_KEY)."""
+    import fal_client
+
     image_data_uri = file_to_data_uri(content, media_type)
     result = fal_client.subscribe(
         "fal-ai/qwen-image-layered",
